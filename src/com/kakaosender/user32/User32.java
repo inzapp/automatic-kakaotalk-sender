@@ -3,6 +3,11 @@ package com.kakaosender.user32;
 import com.sun.jna.Library;
 import com.sun.jna.Native;
 
+/**
+ * Win32Api와 Mapping을 하기 위한 클레스
+ * @author root
+ *
+ */
 public interface User32 extends Library {
     public User32 INSTANCE = Native.load("user32", User32.class);
     
@@ -14,11 +19,7 @@ public interface User32 extends Library {
     
     static long SW_SHOWNORMAL = 1;
     
-    static long WM_COPY = 0x0301;
-    
     static long WM_PASTE = 0x0302;
-    
-    long FindWindowA(long lpClassName, String lpWindowName);
     
     long FindWindowA(int lpClassName, int lpWindowName);
     

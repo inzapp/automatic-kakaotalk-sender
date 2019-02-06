@@ -6,6 +6,14 @@ import java.util.List;
 import com.kakaosender.domain.HWND;
 import com.kakaosender.user32.User32;
 
+/**
+ * 카카오톡 채팅방의 핸들을 탐색해 리스트형태로 리턴하는 클래스
+ * 모든 핸들을 탐색하되 카카오톡 채팅클래스 영역인 RichEdit20W을
+ * 자식 핸들로서 가지고 있는지에대한 여부로 
+ * 해당 창이 카카오톡 창인지를 판단한다
+ * @author root
+ *
+ */
 public class HWndManager {
 	private HWndManager() {}
 	
@@ -17,6 +25,11 @@ public class HWndManager {
 		return Singleton.INSTANCE;
 	}
 	
+	
+	/**
+	 * 모든 핸들을 탐색해 카카오톡 채팅방 핸들만을 추출해 리스트로 리턴한다
+	 * @return
+	 */
 	public List<HWND> getAutoDetectHWndList() {
 		List<HWND> hWndList = new ArrayList<>();
 		
@@ -37,6 +50,13 @@ public class HWndManager {
 		return hWndList;
 	}
 	
+	
+	/**
+	 * 클립보드에 저장된 내용을 카카오톡 채팅방에 전송해주는 함수
+	 * KakaoSendEvent클래스 에서 사용된다
+	 * @param hWndList
+	 * @throws Exception
+	 */
 	public void send(List<HWND> hWndList) throws Exception {
 		for(HWND hWnd : hWndList) {
 			User32.INSTANCE.ShowWindowAsync(hWnd.gethWnd(), User32.SW_SHOWNORMAL);

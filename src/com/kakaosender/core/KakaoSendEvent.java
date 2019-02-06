@@ -11,6 +11,11 @@ import javafx.scene.control.Toggle;
 import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
 
+/**
+ * GUI상의 모든 이벤트에 관한 기능을 관리하는 클래스
+ * @author root
+ *
+ */
 public class KakaoSendEvent {
 	private KakaoSendEvent() {}
 	
@@ -22,6 +27,11 @@ public class KakaoSendEvent {
 		return Singleton.INSTANCE;
 	}
 	
+	/**
+	 * 전송버튼의 이벤트로서 할당되는 함수
+	 * 현재 선택된 Toggle 값을 받아와 해당 기능을 수행한다
+	 * @throws Exception
+	 */
 	public void send() throws Exception {
 		String content = View.content.getText();
 		if(content == null || content.equals("")) {
@@ -53,6 +63,11 @@ public class KakaoSendEvent {
 		}
 	}
 	
+	/**
+	 * 무한반복 전송
+	 * @param hWndList
+	 * @throws Exception
+	 */
 	private void InfiniteSend(List<HWND> hWndList) throws Exception {
 		PRes.isThreadActive = true;
 		while(PRes.isThreadActive) {
@@ -62,12 +77,22 @@ public class KakaoSendEvent {
 		}
 	}
 	
+	/**
+	 * 더미(5회 빠르게) 전송
+	 * @param hWndList
+	 * @throws Exception
+	 */
 	private void dummySend(List<HWND> hWndList) throws Exception {
 		for(int i=0; i<5; i++) {
 			HWndManager.getInstance().send(hWndList);
 		}
 	}
 	
+	/**
+	 * 사용자 입력 직접 전송
+	 * @param hWndList
+	 * @throws Exception
+	 */
 	private void UserInputSend(List<HWND> hWndList) throws Exception {
 		int userInputCount = Integer.parseInt(View.customInputText.getText());
 		PRes.isThreadActive = true;

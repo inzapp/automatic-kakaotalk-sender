@@ -21,6 +21,12 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.stage.Stage;
 
+
+/**
+ * FX 컨트롤 초기화가 이루어지는 메인 클래스
+ * @author root
+ *
+ */
 public class KakaoSender extends Application implements Initializable{
 	
 	@FXML
@@ -44,7 +50,7 @@ public class KakaoSender extends Application implements Initializable{
 		View.content = this.content;
 		
 		View.startBt = this.startBt;
-		View.stopBt = this.stopBt;
+		View.stopBt = this.stopBt; 
 		
 		View.sendCountToggleGroup = new ToggleGroup();
 		View.loopRd.setToggleGroup(View.sendCountToggleGroup);
@@ -52,6 +58,7 @@ public class KakaoSender extends Application implements Initializable{
 		View.customInputRd.setToggleGroup(View.sendCountToggleGroup);
 		View.loopRd.setSelected(true);
 		
+		// 버튼 이벤트 할당
 		View.startBt.setOnMouseClicked(event -> {
 			PRes.threadPool.execute(() -> {
 				try {
